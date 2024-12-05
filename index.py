@@ -1,20 +1,24 @@
 import pandas as pd
 
-from function.movimentacoes import cont_movimentacoes
-from function.beneficios    import cont_beneficio
-from function.trabalho      import cont_trabalho
-from function.estrangeiros  import cont_estrangeiros
-from function.juridico      import cont_juridico
+from function.movimentacoes         import cont_movimentacoes
+from function.beneficios            import cont_beneficio
+from function.trabalho              import cont_trabalho
+from function.estrangeiros          import cont_estrangeiros
+from function.juridico              import cont_juridico
+from function.gerarTaxaDeOcupacao   import criar_tx_ocupacao
 
 nome_tabela_ppa = "PLANILHA DE MONITORAMENTO - ALTA COMPLEXIDADE - EIXO ADULTO - ALBERGUE MARTIN LUTHER KING JR.xlsx"
 
 df = pd.read_excel(nome_tabela_ppa, skiprows=5)
 
+#CONVERSÃO DAS COLUNAS PARA DATETIME
 df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA'] = pd.to_datetime(df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA'], errors='coerce')
 df['DATA DO DESLIGAMENTO DD/MM/AAAA'] = pd.to_datetime(df['DATA DO DESLIGAMENTO DD/MM/AAAA'], errors='coerce')
 
-mes_ref = '11_NOV_2024'
 
+#VARIAVEIS
+mes_ref                 = '11_NOV_2024'
+nome_tb_tx_ocupacao     = 'TaxaDeOcupacao.xlsx'
 mes = None
 ano = None
 
@@ -28,6 +32,8 @@ if(mes_ref == "12_DEZ_2024"):
 
     mes = 12
     ano = 2024
+
+
 
 #ONTAR MOVIMENTAÇÕES DE USUÁRIOS
 movimentacoes   = cont_movimentacoes(df, mes_ref, mes, ano)
@@ -46,9 +52,10 @@ estrangeiros    = cont_estrangeiros(df, mes_ref)
 juridico        = cont_juridico(df, mes_ref)
 
 
+#GERAR TABELA TAXA DE OCUPAÇÃO
+df_dias         = criar_tx_ocupacao(mes, ano)
+df_dias.to_excel(nome_tb_tx_ocupacao, index=False)
 
-
- 
 #MOVIMENTAÇÕES USUÁRIOS
 print("Reinserções PVTN: ",                             movimentacoes["pvtn"])
 print("Reinserções comunitárias: ",                     movimentacoes["comunitario"])
