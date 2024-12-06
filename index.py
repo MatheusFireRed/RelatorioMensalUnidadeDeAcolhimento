@@ -6,22 +6,28 @@ from function.trabalho              import cont_trabalho
 from function.estrangeiros          import cont_estrangeiros
 from function.juridico              import cont_juridico
 from function.gerarTaxaDeOcupacao   import criar_tx_ocupacao
+from function.preencherTxOcupacao   import preencher_tx_ocupacao
 
 nome_tabela_ppa = "PLANILHA DE MONITORAMENTO - ALTA COMPLEXIDADE - EIXO ADULTO - ALBERGUE MARTIN LUTHER KING JR.xlsx"
 
 df = pd.read_excel(nome_tabela_ppa, skiprows=5)
 
 #CONVERSÃO DAS COLUNAS PARA DATETIME
-df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA'] = pd.to_datetime(df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA'], errors='coerce')
-df['DATA DO DESLIGAMENTO DD/MM/AAAA'] = pd.to_datetime(df['DATA DO DESLIGAMENTO DD/MM/AAAA'], errors='coerce')
+df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA']  = pd.to_datetime(df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA'], errors='coerce')
+df['DATA DO DESLIGAMENTO DD/MM/AAAA']       = pd.to_datetime(df['DATA DO DESLIGAMENTO DD/MM/AAAA'], errors='coerce')
 
 
 #VARIAVEIS
-mes_ref                 = '11_NOV_2024'
+mes_ref                 = '10_OUT_2024'
 nome_tb_tx_ocupacao     = 'TaxaDeOcupacao.xlsx'
-mes = None
-ano = None
+mes                     = None
+ano                     = None
+ini_acolhidos           = 135
 
+if(mes_ref == "10_OUT_2024"):
+
+    mes = 10
+    ano = 2024
 
 if(mes_ref == "11_NOV_2024"):
 
@@ -51,10 +57,20 @@ estrangeiros    = cont_estrangeiros(df, mes_ref)
 #JURIDICO
 juridico        = cont_juridico(df, mes_ref)
 
-
 #GERAR TABELA TAXA DE OCUPAÇÃO
-df_dias         = criar_tx_ocupacao(mes, ano)
+df_dias = criar_tx_ocupacao(mes, ano)
+df_dias = preencher_tx_ocupacao(df, mes_ref, df_dias, ini_acolhidos)
+
+teste = df_dias.iloc[0, 1]
+teste2 = df_dias.iloc[0, 2]
+
+teste3 = df_dias.iloc[0, 3]
+teste4 = df_dias.iloc[0, 4]
+teste5 = df_dias.iloc[0, 5]
+print(teste + teste2 - teste3 - teste4 - teste5)
+
 df_dias.to_excel(nome_tb_tx_ocupacao, index=False)
+
 
 #MOVIMENTAÇÕES USUÁRIOS
 print("Reinserções PVTN: ",                             movimentacoes["pvtn"])
