@@ -23,7 +23,7 @@ def criar_tx_ocupacao(mes, ano):
     
     # Convertendo para o formato DD/MM/AAAA
     df_dias['Data'] = df_dias['Data'].dt.strftime('%d/%m/%Y')
-      
+    
     
     return df_dias
 

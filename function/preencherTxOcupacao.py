@@ -68,6 +68,7 @@ def preencher_tx_ocupacao(df, mes_ref, df_dias, ini_acolhidos):
 
         df_dias.iloc[i, coluna] = qtd_dias
 
+        pd.set_option('future.no_silent_downcasting', True)
         df_dias = df_dias.fillna(0)
             
         valor_inicial   = df_dias.iloc[i, 1]
