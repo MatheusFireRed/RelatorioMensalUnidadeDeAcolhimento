@@ -1,6 +1,6 @@
 import pandas as pd
 
-def preencher_devolutiva(df_devolutiva,
+def preencher_mrosc(    df_mrosc,
                          pvtn,
                          comunitario,
                          familiar,
@@ -25,7 +25,6 @@ def preencher_devolutiva(df_devolutiva,
                          cont_lib_condicional,
                          cont_egressos
                          ):
-
     dados = {
     'pvtn': pvtn,
     'comunitario': comunitario,
@@ -52,14 +51,10 @@ def preencher_devolutiva(df_devolutiva,
     'cont_egressos': cont_egressos
     }
 
-    df_devolutiva['RESULTADOS'] = ['', 0, 0, 0, '', 0, 0, 0, 0, 0, '', dados['obitos'],
-                                   '', 0, 0, 0, 0, 0, '', 0, '', dados['pvtn'], dados['comunitario'],
-                                    dados['familiar'], dados['ref_creas'], dados['transferidos'], '',
-                                    dados['inscr_cad'], 0, 0, '', 0, 0, '', dados['total_acolhidos'],
-                                    dados['recepcionados'], 0, dados['desligados'], dados['estrangeiros'],
-                                    dados['imigrantes'], dados['cont_refugiados']]
- 
-    
-  
+    df_mrosc['RESULTADOS'] = [dados['recepcionados'], dados['transferidos'], dados['desligados'], dados['familiar'],
+                              dados['comunitario'], 0, dados['pvtn'], dados['ref_creas'], dados['total_acolhidos_final'],
+                              0, '', 0, 0, 0, '', 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0, 0, '', dados['inscr_cad'], dados['n_benef'],
+                              0, '', 0, dados['formal'], dados['informal'], 0, dados['bpc'], dados['bf'], dados['n_benef'],'',
+                              0, 0]
 
-    return df_devolutiva
+    return df_mrosc

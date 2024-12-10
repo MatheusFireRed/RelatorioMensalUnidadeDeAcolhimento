@@ -10,6 +10,7 @@ from function.preencherTxOcupacao   import preencher_tx_ocupacao
 from function.gerarDevolutiva       import gerar_devolutiva
 from function.gerarMrosc            import gerar_mrosc
 from function.preencherDevolutiva   import preencher_devolutiva
+from function.preencherMROSC        import preencher_mrosc
 
 
 nome_tabela_ppa = "PLANILHA DE MONITORAMENTO - ALTA COMPLEXIDADE - EIXO ADULTO - ALBERGUE MARTIN LUTHER KING JR.xlsx"
@@ -24,7 +25,7 @@ df['DATA DO DESLIGAMENTO DD/MM/AAAA']       = pd.to_datetime(df['DATA DO DESLIGA
 #VARIAVEIS
 mes_ref                 = '11_NOV_2024'
 nome_tb_tx_ocupacao     = 'TaxaDeOcupacao.xlsx'
-nome_tb_devolutiva      = 'Devolutiva.xlsx'
+nome_tb_devolutiva      = 'DEVOLUTIVA.xlsx'
 nome_tb_mrosc           = "MROSC.xlsx"
 mes                     = int(mes_ref[:2])
 ano                     = int(mes_ref[-4:])
@@ -87,7 +88,6 @@ cont_egressos           = juridico["egressos"]
 
 #GERAR DEVOLUTIVA
 df_devolutiva = gerar_devolutiva()
-
 df_devolutiva = preencher_devolutiva(   df_devolutiva,
                                         pvtn,
                                         comunitario,
@@ -113,14 +113,36 @@ df_devolutiva = preencher_devolutiva(   df_devolutiva,
                                         cont_lib_condicional,
                                         cont_egressos
                                      )
-
-print(df_devolutiva)
-
 df_devolutiva.to_excel(nome_tb_devolutiva, index=False)
 
 #GERAR MROSC
 df_mrosc = gerar_mrosc()
-
+df_mrosc = preencher_mrosc(             df_mrosc,
+                                        pvtn,
+                                        comunitario,
+                                        familiar,
+                                        ref_creas,
+                                        transferidos,
+                                        desligados,
+                                        total_acolhidos,
+                                        obitos,
+                                        total_acolhidos_final,
+                                        recepcionados,
+                                        bf,
+                                        bpc,
+                                        n_benef,
+                                        outro_benef,
+                                        inscr_cad,
+                                        formal,
+                                        informal,
+                                        estrangeiros_cont,
+                                        refugiados,
+                                        imigrantes,
+                                        cont_processo,
+                                        cont_lib_condicional,
+                                        cont_egressos
+                                     )
 df_mrosc.to_excel(nome_tb_mrosc, index=False)
 
+print(df_mrosc)
 
