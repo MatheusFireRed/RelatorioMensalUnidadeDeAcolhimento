@@ -1,4 +1,5 @@
 import pandas as pd
+import json
 
 from function.movimentacoes         import cont_movimentacoes
 from function.beneficios            import cont_beneficio
@@ -13,6 +14,14 @@ from function.preencherDevolutiva   import preencher_devolutiva
 from function.preencherMROSC        import preencher_mrosc
 
 
+
+try:
+    with open("dados.json", "r") as f:
+        mes_ref = json.load(f)["mes_ref"]  # Lê a chave 'mes_ref' do JSON
+except FileNotFoundError:
+    print("Arquivo dados.json não encontrado. Certifique-se de rodar o segundo programa primeiro.")
+    mes_ref = None
+
 nome_tabela_ppa = "PLANILHA DE MONITORAMENTO - ALTA COMPLEXIDADE - EIXO ADULTO - ALBERGUE MARTIN LUTHER KING JR.xlsx"
 
 df = pd.read_excel(nome_tabela_ppa, skiprows=5)
@@ -22,8 +31,7 @@ df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA']  = pd.to_datetime(df['DATA DO ACOLHIM
 df['DATA DO DESLIGAMENTO DD/MM/AAAA']       = pd.to_datetime(df['DATA DO DESLIGAMENTO DD/MM/AAAA'], errors='coerce')
 
 
-#VARIAVEIS
-mes_ref                 = '11_NOV_2024'
+#mes_ref                 = '11_NOV_2024'
 nome_tb_tx_ocupacao     = 'TaxaDeOcupacao.xlsx'
 nome_tb_devolutiva      = 'DEVOLUTIVA.xlsx'
 nome_tb_mrosc           = "MROSC.xlsx"
@@ -117,7 +125,7 @@ df_devolutiva.to_excel(nome_tb_devolutiva, index=False)
 
 #GERAR MROSC
 df_mrosc = gerar_mrosc()
-df_mrosc = preencher_mrosc(             df_mrosc,
+df_mrosc = preencher_mrosc( df_mrosc,
                                         pvtn,
                                         comunitario,
                                         familiar,
