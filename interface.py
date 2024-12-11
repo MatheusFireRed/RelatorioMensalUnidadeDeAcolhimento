@@ -35,7 +35,7 @@ janela.geometry("500x500")
 
 opceos = ['01_JAN_2024', '02_FEV_2024', '03_MAR_2024', '04_ABR_2024', '05_MAI_2024', 
           '06_JUN_2024', '07_JUL_2024', '08_AGO_2024', '09_SET_2024', '10_OUT_2024',
-          '11_NOV_2024', '12_DEZ_2024'] 
+          '11_NOV_2024', '12_DEZ_2024', '01_JAN_2025', '02_FEV_2025', '03_MAR_2025'] 
 
 mes_ref_variavel = tk.StringVar()
 mes_ref_variavel.set(opceos[0])

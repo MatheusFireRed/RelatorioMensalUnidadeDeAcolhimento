@@ -1,6 +1,11 @@
 import pandas as pd
 import json
 
+from openpyxl           import load_workbook
+from openpyxl.styles    import Alignment
+from openpyxl.styles    import PatternFill
+
+
 from function.movimentacoes         import cont_movimentacoes
 from function.beneficios            import cont_beneficio
 from function.trabalho              import cont_trabalho
@@ -12,7 +17,6 @@ from function.gerarDevolutiva       import gerar_devolutiva
 from function.gerarMrosc            import gerar_mrosc
 from function.preencherDevolutiva   import preencher_devolutiva
 from function.preencherMROSC        import preencher_mrosc
-
 
 
 try:
@@ -154,3 +158,66 @@ df_mrosc.to_excel(nome_tb_mrosc, index=False)
 
 print(df_mrosc)
 
+workbook    = load_workbook(nome_tb_tx_ocupacao)
+sheet       = workbook.active
+
+alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+
+for row in sheet.iter_rows(min_row=1, max_row=sheet.max_row, min_col=1, max_col=sheet.max_column):
+    for cell in row:
+        cell.alignment = alignment
+
+# Ajusta o tamanho das colunas para melhor visualização
+for col in sheet.columns:
+    max_length = 0
+    col_letter = col[0].column_letter  # Obtém a letra da coluna
+    for cell in col:
+        try:
+            if cell.value:
+                max_length = max(max_length, len(str(cell.value)))
+        except:
+            pass
+    adjusted_width = 13
+    sheet.column_dimensions[col_letter].width = adjusted_width
+
+workbook.save(nome_tb_tx_ocupacao)
+
+workbook = load_workbook(nome_tb_mrosc)
+sheet    = workbook.active
+
+
+sheet.column_dimensions['A'].width = 90
+sheet.column_dimensions['B'].width = 15
+for linha in range(1, 50):  # Suponha que 1000 linhas são suficientes
+    sheet[f"B{linha}"].alignment = Alignment(horizontal='center', vertical='center')
+
+sheet.merge_cells('A12:B12')
+sheet.merge_cells('A16:B16')
+sheet.merge_cells('A21:B21')
+sheet.merge_cells('A29:B29')
+sheet.merge_cells('A33:B33')
+sheet.merge_cells('A41:B41')
+
+
+
+sheet['A12'].alignment = Alignment(horizontal='center', vertical='center')
+sheet['A21'].alignment = Alignment(horizontal='center', vertical='center')
+sheet['A29'].alignment = Alignment(horizontal='center', vertical='center')
+sheet['A33'].alignment = Alignment(horizontal='center', vertical='center')
+sheet['A16'].alignment = Alignment(horizontal='center', vertical='center')
+sheet['A41'].alignment = Alignment(horizontal='center', vertical='center')
+sheet['A20'].alignment = Alignment(wrap_text=True)
+sheet['A40'].alignment = Alignment(wrap_text=True)
+
+fill    = PatternFill(start_color='d3d3d3', end_color='d3d3d3', fill_type='solid')
+fill2   = PatternFill(start_color='5e5e5e', end_color='5e5e5e',fill_type='solid')
+
+sheet['A12'].fill = fill
+sheet['A16'].fill = fill  
+sheet['A21'].fill = fill
+sheet['A29'].fill = fill
+sheet['A33'].fill = fill
+sheet['A41'].fill = fill
+
+
+workbook.save(nome_tb_mrosc)
