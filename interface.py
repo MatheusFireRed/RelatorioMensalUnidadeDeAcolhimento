@@ -2,11 +2,18 @@ import json
 import os
 import subprocess
 import tkinter as tk
+from tkinter import messagebox
 
 def enviar_informacoes():
     mes_ref = mes_ref_variavel.get()
+    ini_acolhidos_valor = ini_acolhidos.get()
+
+    if not ini_acolhidos_valor.isdigit():
+        messagebox.showerror("Error", "O número de acolhidos deve ser um valor numérico.")
+        return
+    
     with open("dados.json", "w") as f:
-        json.dump({"mes_ref": mes_ref}, f)
+        json.dump({"mes_ref": mes_ref, "ini_acolhidos": int(ini_acolhidos_valor)}, f)
 
     # Executar o outro programa
     subprocess.run(["python", "index.py"])
@@ -29,20 +36,35 @@ def executar_acoes():
     enviar_informacoes()
     executar_programa()
 
+
+#CRIAR JANELA PRINCIPAL
 janela = tk.Tk()
 janela.title("Gerar Relatórios Mensais")
 janela.geometry("500x500")
 
-opceos = ['01_JAN_2024', '02_FEV_2024', '03_MAR_2024', '04_ABR_2024', '05_MAI_2024', 
+#OPÇÕES DO MENU SUSPENSO
+opcoes = ['01_JAN_2024', '02_FEV_2024', '03_MAR_2024', '04_ABR_2024', '05_MAI_2024', 
           '06_JUN_2024', '07_JUL_2024', '08_AGO_2024', '09_SET_2024', '10_OUT_2024',
           '11_NOV_2024', '12_DEZ_2024', '01_JAN_2025', '02_FEV_2025', '03_MAR_2025'] 
 
 mes_ref_variavel = tk.StringVar()
-mes_ref_variavel.set(opceos[0])
+mes_ref_variavel.set(opcoes[0])
 
-menu_suspenso = tk.OptionMenu(janela, mes_ref_variavel, *opceos)
+#CRIAR MENU SUSPENSO
+menu_suspenso = tk.OptionMenu(janela, mes_ref_variavel, *opcoes)
 menu_suspenso.pack(pady=20)
 
+#CRIAR INPUT COM NUMERO DE USUÁRIOS NO INÍCIO DO MÊS
+label_ini_acolhidos = tk.Label(janela, text='Nº acolhidos inicio mês:')
+label_ini_acolhidos.pack(pady=20)
+
+ini_acolhidos = tk.Entry(janela, width=40)
+ini_acolhidos.pack(pady=10)
+
+
+
+
+#CRIAR BOTÃO PARA GERAR RELATÓRIOS
 btn_executar = tk.Button(janela, text="Gerar Relatórios", command=executar_acoes, bg="green", font=("Arial", 12))
 btn_executar.pack(pady=50)
 

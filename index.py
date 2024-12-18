@@ -21,7 +21,10 @@ from function.preencherMROSC        import preencher_mrosc
 
 try:
     with open("dados.json", "r") as f:
-        mes_ref = json.load(f)["mes_ref"]  # Lê a chave 'mes_ref' do JSON
+        dados = json.load(f)  # Carrega o JSON completo em um dicionário
+        mes_ref = dados["mes_ref"]  # Lê a chave 'mes_ref'
+        ini_acolhidos_valor = dados["ini_acolhidos"]  # Lê a chave 'ini_acolhidos'
+        
 except FileNotFoundError:
     print("Arquivo dados.json não encontrado. Certifique-se de rodar o segundo programa primeiro.")
     mes_ref = None
@@ -41,7 +44,7 @@ nome_tb_devolutiva      = 'DEVOLUTIVA.xlsx'
 nome_tb_mrosc           = "MROSC.xlsx"
 mes                     = int(mes_ref[:2])
 ano                     = int(mes_ref[-4:])
-ini_acolhidos           = 135
+ini_acolhidos           = ini_acolhidos_valor
 
 
 #ONTAR MOVIMENTAÇÕES DE USUÁRIOS
@@ -250,6 +253,9 @@ sheet.merge_cells('A22:B22')
 sheet.merge_cells('A28:B28')
 sheet.merge_cells('A32:B32')
 sheet.merge_cells('A35:B35')
+
+
+#CENTRALIZAR CELULAS MESCLADAS
 
 
 #DIMENSIONAR LARGURA DAS COLUNAS 
