@@ -21,9 +21,10 @@ from function.preencherMROSC        import preencher_mrosc
 
 try:
     with open("dados.json", "r") as f:
-        dados = json.load(f)  # Carrega o JSON completo em um dicionário
-        mes_ref = dados["mes_ref"]  # Lê a chave 'mes_ref'
-        ini_acolhidos_valor = dados["ini_acolhidos"]  # Lê a chave 'ini_acolhidos'
+        dados                   = json.load(f)  # Carrega o JSON completo em um dicionário
+        mes_ref                 = dados["mes_ref"]  # Lê a chave 'mes_ref'
+        ini_acolhidos_valor     = dados["ini_acolhidos"]  # Lê a chave 'ini_acolhidos'
+        atividades              = dados["atividades"]
         
 except FileNotFoundError:
     print("Arquivo dados.json não encontrado. Certifique-se de rodar o segundo programa primeiro.")
@@ -38,7 +39,6 @@ df['DATA DO ACOLHIMENTO ATUAL DD/MM/AAAA']  = pd.to_datetime(df['DATA DO ACOLHIM
 df['DATA DO DESLIGAMENTO DD/MM/AAAA']       = pd.to_datetime(df['DATA DO DESLIGAMENTO DD/MM/AAAA'], errors='coerce')
 
 
-#mes_ref                 = '11_NOV_2024'
 nome_tb_tx_ocupacao     = 'TaxaDeOcupacao.xlsx'
 nome_tb_devolutiva      = 'DEVOLUTIVA.xlsx'
 nome_tb_mrosc           = "MROSC.xlsx"
@@ -245,14 +245,18 @@ sheet       = workbook.active
 
 #MESCLAR CELULAS
 sheet.merge_cells('A2:B2')
-sheet.merge_cells('A5:B5')
+sheet.merge_cells('A6:B6')
 sheet.merge_cells('A12:B12')
 sheet.merge_cells('A14:B14')
 sheet.merge_cells('A20:B20')
 sheet.merge_cells('A22:B22')
 sheet.merge_cells('A28:B28')
-sheet.merge_cells('A32:B32')
-sheet.merge_cells('A35:B35')
+sheet.merge_cells('A33:B33')
+sheet.merge_cells('A38:B38')
+sheet.merge_cells('A43:B43')
+sheet.merge_cells('A47:B47')
+sheet.merge_cells('A50:B50')
+sheet.merge_cells('A54:B54')
 
 
 #CENTRALIZAR CELULAS MESCLADAS
@@ -264,12 +268,14 @@ sheet.column_dimensions['B'].width = 15
 
 
 #QUEBRAR TEXTO AO TAMANHO DA COLUNA
-sheet['A21'].alignment = Alignment(wrap_text=True)
-sheet['A37'].alignment = Alignment(wrap_text=True)
+sheet['A30'].alignment = Alignment(wrap_text=True)
+sheet['A32'].alignment = Alignment(wrap_text=True)
+sheet['A56'].alignment = Alignment(wrap_text=True)
+sheet['A57'].alignment = Alignment(wrap_text=True)
 
 
 #CENTRALIZAR CELULAS
-for linha in range(1, 50):  # Suponha que 1000 linhas são suficientes
+for linha in range(1, 62):  # Suponha que 1000 linhas são suficientes
     sheet[f"B{linha}"].alignment = Alignment(horizontal='center', vertical='center')
 
 
@@ -277,13 +283,17 @@ for linha in range(1, 50):  # Suponha que 1000 linhas são suficientes
 sheet['A1'].fill    = fill2
 sheet['B1'].fill    = fill2
 sheet['A2'].fill    = fill
-sheet['A5'].fill    = fill
+sheet['A6'].fill    = fill
 sheet['A12'].fill   = fill
 sheet['A14'].fill   = fill
 sheet['A20'].fill   = fill
 sheet['A22'].fill   = fill
 sheet['A28'].fill   = fill
-sheet['A32'].fill   = fill
-sheet['A35'].fill   = fill
+sheet['A33'].fill   = fill
+sheet['A38'].fill   = fill
+sheet['A43'].fill   = fill
+sheet['A47'].fill   = fill
+sheet['A50'].fill   = fill
+sheet['A54'].fill   = fill
 
 workbook.save(nome_tb_devolutiva)

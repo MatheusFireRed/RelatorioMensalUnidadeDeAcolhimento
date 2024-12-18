@@ -7,35 +7,66 @@ def gerar_devolutiva():
                                     'Nº DE ATENDIMENTOS NA SAÚDE - ATENÇÃO BÁSICA',
                                     'Nº DE ATENDIMENTOS NA SAÚDE MENTAL – CAPS E CAPSAD',
                                     'Nº DE ATENDIMENTOS EM UNIDADE DE EMERGÊNCIA',
+                                    
                                     'SAÚDE/COVID19',
                                     'Nº DE USUÁRIOS COM SUSPEITA DE COVID NO MÊS',
                                     'Nº DE USUÁRIOS TESTADOS POSITIVO PARA COVID-19 NO MÊS',
                                     'Nº DE USUÁRIOS INTERNADOS EM DECORRÊNCIA DA COVID-19 NO MÊS',
                                     'Nº DE USUÁRIOS QUE VIERAM A ÓBITO EM DECORRÊNCIA DA COVID -19 NO MÊS',
                                     'Nº DE USUÁRIOS VACINADOS NO MÊS',
+
                                     'ÓBITOS',
                                     'Nº DE USUÁRIOS QUE VIERAM A ÓBITO  NO MÊS',
+                                    
                                     'DOCUMENTAÇÃO',
                                     'Nº DE USUÁRIOS QUE OBTIVERAM A EXPEDIÇÃO DA CÉDULA DE IDENTIDADE',
                                     'Nº DE USUÁRIOS QUE OBTIVERAM A EXPEDIÇÃO DA CERTIDÃO DE NASCIMENTO',
                                     'Nº DE USUÁRIOS QUE OBTIVERAM A CARTEIRA DE TRABALHO',
                                     'Nº DE USUÁRIOS QUE OBTIVERAM  CPF (1ª e 2ª via)',
                                     'Nº DE USUÁRIOS QUE OBTIVERAM A EXPEDIÇÃO DO CERTIFICADO DE RESERVISTA',
+
                                     'ENCAMINHAMENTO PARA A REDE SOCIOASSISTENCIAL',
                                     'TOTAL DE ENCAMINHAMENTOS PARA A REDE SOCIOASSISTENCIAL (TODOS OS ENCAMINHAMENTOS REALIZADOS)',
+                                    
                                     'REINSERÇÃO/TRANSF PARA OUTRA UNIDADE DE ACOLHIMENTO',
                                     'Nº DE REINSERÇÕES PELO PROGRAMA “DE VOLTA À TERRA NATAL”',
                                     'Nº DE REINSERÇÕES POR AUTONOMIA/ COMUNITÁRIA',
                                     'Nº DE REINSERÇÕES NA FAMÍLIA',
                                     'Nº DE USUÁRIOS REINSERIDOS QUE FORAM REFERENCIADOS AOS CREAS',
                                     'Nº DE USUÁRIOS TRANSFERIDOS PARA OUTRA UNIDADE DE ACOLHIMENTO',
+
                                     'CADASTRO ÚNICO',
+                                    'Nº DE USUÁRIOS INSCRITOS NO CADÚNICO',
                                     'Nº DE USUÁRIOS INSERIDOS NO CADÚNICO – CADASTRO NOVO E TRANSFERÊNCIA DE MUNICIPIO',
                                     'Nº DE USUÁRIOS REALIZADOS ATUALIZAÇÃO NO CAD ÚNICO',
                                     'Nº DE USUÁRIOS QUE NÃO POSSUEM INSCRIÇÃO NO CADÚNICO POR FALTA DE DOCUMENTOS',
+
                                     'ACESSO A BENEFÍCIOS',
+                                    'Nº DE USUÁRIOS BENEFICIÁRIOS DO AUXÍLIO BRASIL',
+                                    'Nº DE USUÁRIOS BENEFICIÁRIOS DO BPC',
+                                    'Nº DE USUÁRIOS BENEFICIÁRIOS DO AUXÍLIO EMERGENCIAL',
+                                    'Nº DE USUÁRIOS BENEFICIÁRIOS DE OUTROS BENEFÍCIOS',
+
+                                    'QUALIFICAÇÃO,TRABALHO E RENDA',
+                                    'Nº DE USUÁRIOS INSERIDOS NO MERCADO DE TRABALHO FORMAL/VÍNCULO CLT',
+                                    'Nº DE USUÁRIOS INSERIDOS NO TRABALHO FORMAL',
+                                    'Nº DE USUÁRIOS INSERIDOS NO TRABALHO INFORMAL',
+                                    'Nº DE USUÁRIOS ENCAMINHADOS PARA CURSOS DE QUALIFICAÇÃO',
+
+                                    'CULTURA E LAZER',
+                                    'Nº DE USUÁRIOS SENSIBILIZADOS PARA ATIVIDADES DE CULTURA E LAZER',
+                                    'Nº DE USUÁRIOS QUE PARTICIPARAM DAS ATIVIDADES DE CULTURA E LAZER',
+                                    'Nº DE ATIVIDADES DE CULTURA E LAZER REALIZADAS',
+
+                                    'PROGRAMAS HABITACIONAIS',
                                     'Nº DE USUÁRIOS ENCAMINHADOS PARA SMH',
                                     'OUTROS PROJETOS HABITACIONAIS',
+
+                                    'LEVANTAMENTO JURÍDICO',
+                                    'Nº DE USUÁRIOS COM PROCESSO JUDICIAL',
+                                    'Nº DE USUÁRIOS COM PROCESSO JUDICIAL - EM ANDAMENTO',
+                                    'Nº DE USUÁRIOS EGRESSOS DO SISTEMA PENAL',
+
                                     'USUÁRIOS EM ACOLHIMENTO',
                                     'TOTAL DE USUÁRIOS ACOLHIDOS NO MÊS',
                                     'TOTAL DE USUÁRIOS QUE ENTRARAM NO MÊS DE REFERÊNCIA (ENCAMINHADOS PELA CRAF TOM JOBIM)',
