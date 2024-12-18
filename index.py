@@ -158,6 +158,8 @@ df_mrosc.to_excel(nome_tb_mrosc, index=False)
 
 print(df_mrosc)
 
+
+#FORMATAÇÃO TABELA TAXA DE OCUPAÇÃO***********************************************************************
 workbook    = load_workbook(nome_tb_tx_ocupacao)
 sheet       = workbook.active
 
@@ -182,15 +184,23 @@ for col in sheet.columns:
 
 workbook.save(nome_tb_tx_ocupacao)
 
+
+#FORMATAÇÃO DA TABELA MROSC***************************************************************************
 workbook = load_workbook(nome_tb_mrosc)
 sheet    = workbook.active
 
 
+#DIMENSIONAR LARGURA DAS COLUNAS 
 sheet.column_dimensions['A'].width = 90
 sheet.column_dimensions['B'].width = 15
+
+
+#CENTRALIZAR CELULAS
 for linha in range(1, 50):  # Suponha que 1000 linhas são suficientes
     sheet[f"B{linha}"].alignment = Alignment(horizontal='center', vertical='center')
 
+
+#MESCLAR CELULAS 
 sheet.merge_cells('A12:B12')
 sheet.merge_cells('A16:B16')
 sheet.merge_cells('A21:B21')
@@ -199,16 +209,19 @@ sheet.merge_cells('A33:B33')
 sheet.merge_cells('A41:B41')
 
 
-
+#CENTRALIZAR CELULAS MESCLADAS
 sheet['A12'].alignment = Alignment(horizontal='center', vertical='center')
 sheet['A21'].alignment = Alignment(horizontal='center', vertical='center')
 sheet['A29'].alignment = Alignment(horizontal='center', vertical='center')
 sheet['A33'].alignment = Alignment(horizontal='center', vertical='center')
 sheet['A16'].alignment = Alignment(horizontal='center', vertical='center')
 sheet['A41'].alignment = Alignment(horizontal='center', vertical='center')
+
+#QUEBRAR TEXTO AO TAMANHO DA COLUNA
 sheet['A20'].alignment = Alignment(wrap_text=True)
 sheet['A40'].alignment = Alignment(wrap_text=True)
 
+#MUDAR COR DAS CELULAS
 fill    = PatternFill(start_color='d3d3d3', end_color='d3d3d3', fill_type='solid')
 fill2   = PatternFill(start_color='5e5e5e', end_color='5e5e5e',fill_type='solid')
 
@@ -219,5 +232,52 @@ sheet['A29'].fill = fill
 sheet['A33'].fill = fill
 sheet['A41'].fill = fill
 
-
+#SALVAR TABELA
 workbook.save(nome_tb_mrosc)
+
+#FORMATAÇÃO TABELA DEVOLUTIVA**********************************************************************
+
+workbook    = load_workbook(nome_tb_devolutiva)
+sheet       = workbook.active
+
+#MESCLAR CELULAS
+sheet.merge_cells('A2:B2')
+sheet.merge_cells('A5:B5')
+sheet.merge_cells('A12:B12')
+sheet.merge_cells('A14:B14')
+sheet.merge_cells('A20:B20')
+sheet.merge_cells('A22:B22')
+sheet.merge_cells('A28:B28')
+sheet.merge_cells('A32:B32')
+sheet.merge_cells('A35:B35')
+
+
+#DIMENSIONAR LARGURA DAS COLUNAS 
+sheet.column_dimensions['A'].width = 80
+sheet.column_dimensions['B'].width = 15
+
+
+#QUEBRAR TEXTO AO TAMANHO DA COLUNA
+sheet['A21'].alignment = Alignment(wrap_text=True)
+sheet['A37'].alignment = Alignment(wrap_text=True)
+
+
+#CENTRALIZAR CELULAS
+for linha in range(1, 50):  # Suponha que 1000 linhas são suficientes
+    sheet[f"B{linha}"].alignment = Alignment(horizontal='center', vertical='center')
+
+
+#MUDAR COR DAS CELULAS
+sheet['A1'].fill    = fill2
+sheet['B1'].fill    = fill2
+sheet['A2'].fill    = fill
+sheet['A5'].fill    = fill
+sheet['A12'].fill   = fill
+sheet['A14'].fill   = fill
+sheet['A20'].fill   = fill
+sheet['A22'].fill   = fill
+sheet['A28'].fill   = fill
+sheet['A32'].fill   = fill
+sheet['A35'].fill   = fill
+
+workbook.save(nome_tb_devolutiva)
